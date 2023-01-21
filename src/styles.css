@@ -1,0 +1,290 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+:root {
+    --LimeGreen: hsl(163, 72%, 41%);
+    --BrightRed: hsl(356, 69%, 56%);
+    --Facebook: hsl(208, 92%, 53%);
+    --Twitter: hsl(203, 89%, 53%);
+    --Instagram: linear-gradient(
+        90deg,
+        rgba(253, 196, 104, 1) 0%,
+        rgba(223, 73, 150, 1) 50%
+    );
+    --YouTube: hsl(348, 97%, 39%);
+    --Toggle: hsl(230, 22%, 74%);
+    --BG: hsl(0, 0%, 100%);
+    --TopBGPattern: hsl(225, 100%, 98%);
+    --CardBG: hsl(227, 47%, 96%);
+    --CardBGHover: hsl(227, 47%, 90%);
+    --Text1: hsl(228, 12%, 44%);
+    --Text2: hsl(230, 17%, 14%);
+}
+
+body.darkmode {
+    --Toggle: linear-gradient(
+        90deg,
+        hsl(210, 78%, 56%) 0%,
+        hsl(146, 68%, 55%) 50%
+    );
+    --BG: hsl(230, 17%, 14%);
+    --TopBGPattern: hsl(232, 19%, 15%);
+    --CardBG: hsl(228, 28%, 20%);
+    --CardBGHover: hsl(228, 28%, 26%);
+    --Text1: hsl(228, 34%, 66%);
+    --Text2: hsl(0, 0%, 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-color: var(--BG);
+    color: var(--Text2);
+    padding: 2rem;
+
+    transition: background-color 0.5s, color 0.5s;
+}
+
+.color__green {
+    color: var(--LimeGreen);
+    font-weight: bold;
+}
+
+.color__red {
+    color: var(--BrightRed);
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    display: grid;
+    gap: 1rem;
+}
+
+.header__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle {
+    background: var(--Toggle);
+    width: 60px;
+    height: 32px;
+    border-radius: 2rem;
+    position: relative;
+}
+
+.ball {
+    width: 25px;
+    height: 25px;
+    background-color: var(--BG);
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+    cursor: pointer;
+
+    transition: left 0.5s;
+}
+
+.ball__active {
+    left: 30px;
+}
+
+.header__month {
+    position: relative;
+}
+
+.header__month-title {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.months {
+    position: absolute;
+    background-color: var(--CardBG);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    z-index: 1000;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    display: none;
+    user-select: none;
+}
+
+.header__month-title:hover + .months,
+.months:hover {
+    display: block;
+}
+
+.months li {
+    cursor: pointer;
+}
+
+.months li:hover {
+    color: var(--Text1);
+}
+
+@media (min-width: 700px) {
+    .header {
+        grid-template-rows: 1fr 1fr;
+        align-items: center;
+    }
+
+    .header__title {
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+    }
+
+    .header__toggle {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+
+    .header__month {
+        grid-row: 2 / 3;
+        grid-column: 1 / 2;
+    }
+}
+
+.body {
+    margin-top: 2rem;
+}
+
+.body__headers,
+.body__info-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.body__header {
+    background-color: var(--CardBG);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    position: relative;
+    overflow: hidden;
+
+    cursor: pointer;
+    transition: transform 0.5s, background-color 0.5s;
+}
+
+.body__header:hover {
+    transform: translateY(-5px);
+    background-color: var(--CardBGHover);
+}
+
+.body__header-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.body__header-user span {
+    color: var(--Text1);
+    font-weight: bold;
+}
+
+.body__header-followers p:nth-child(1) {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.body__header-followers p:nth-child(2) {
+    letter-spacing: 5px;
+    color: var(--Text1);
+}
+
+.body__header-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.body__header::before {
+    content: "";
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.body__header:nth-child(1):before {
+    background-color: var(--Facebook);
+}
+
+.body__header:nth-child(2):before {
+    background-color: var(--Twitter);
+}
+
+.body__header:nth-child(3):before {
+    background: var(--Instagram);
+}
+
+.body__header:nth-child(4):before {
+    background-color: var(--YouTube);
+}
+
+.body__info-item {
+    background-color: var(--CardBG);
+    border-radius: 1rem;
+
+    cursor: pointer;
+    transition: transform 0.5s, background-color 0.5s;
+}
+
+.body__info-item:hover {
+    transform: translateY(-5px);
+    background-color: var(--CardBGHover);
+}
+
+.body__info h2 {
+    margin: 2rem 0;
+}
+
+.body__info-item-top,
+.body__info-item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+}
+
+.body__info-item-top span {
+    font-weight: bold;
+    color: var(--Text1);
+}
+
+.body__info-item-bottom > span {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.body__info-item-bottom > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
